@@ -1,0 +1,55 @@
+name: Deploy
+
+# Only runs on a push that lands directly on main — i.e. only after a
+# merge, never on a pull_request from a fork. This is deliberate: GitHub
+# already withholds repository secrets from fork-PR workflow runs by
+# default, and gating the trigger this way means the deploy step only
+# ever executes after something has actually been merged into main by
+# someone with write access to this repo.
+on:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: PHP lint
+        run: find . -name "*.php" -not -path "./.git/*" -print0 | xargs -0 -n1 php -l
+
+  deploy:
+    needs: lint
+    runs-on: ubuntu-latest
+    # Requires 3 encrypted secrets, added under this repo's
+    # Settings → Secrets and variables → Actions:
+    #   FTP_SERVER    e.g. ftp.example.com
+    #   FTP_USERNAME
+    #   FTP_PASSWORD
+    #   FTP_TARGET_DIR   the remote folder to sync into (e.g. app/facta.example.com)
+    # This repo intentionally ships no seed data (see README.md) — the
+    # remote target's data/ folder (smartquran.db, seed_*.sql) is left
+    # alone by dangerous-clean-slate: false below, so this deploy can
+    # never delete data that only exists on the server.
+    steps:
+      - uses: actions/checkout@v4
+      - name: FTP deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_TARGET_DIR }}/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/data/*.sql
+            **/data/*.db
+            **/data/*.db-shm
+            **/data/*.db-wal
+            **/deploy.secrets.json
+            **/config.keys.json

@@ -1,0 +1,20 @@
+# Secrets — never commit these
+deploy.secrets.json
+config.keys.json
+
+# Generated seed data & database — see data/README.md. Intentionally
+# untracked: part of the source pipeline is GPLv3-derived (see the data
+# note in README.md), so nothing built from it is redistributed here.
+data/*.sql
+!data/schema.sql
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/.words_cache/
+data/.quran-morphology-source.txt
+data/surah_names_id.json
+
+# Local scratch / OS files
+_test_db.php
+.DS_Store
+Thumbs.db

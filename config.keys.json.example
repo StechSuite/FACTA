@@ -1,0 +1,11 @@
+{
+    "schemaVersion": "1.0.0",
+    "description": "FACTA server-side secrets. Copy this file to config.keys.json and fill in real values — that file is gitignored, this .example is safe to commit.",
+    "activeProvider": "OLLAMA_CLOUD",
+    "providers": {
+        "OLLAMA_CLOUD": { "apiKey": "" },
+        "OPENROUTER": { "apiKey": "" },
+        "OPENAI": { "apiKey": "" },
+        "OLLAMA_LOCAL": { "apiKey": "" }
+    }
+}

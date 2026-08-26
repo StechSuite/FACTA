@@ -1,0 +1,377 @@
+Berikut adalah prompt untuk AI Agent/AI Software Architect yang memaksa agent untuk menggali kebutuhan secara mendalam, tidak membuat asumsi, dan menghasilkan spesifikasi lengkap sebelum menulis kode.
+
+PROMPT AI AGENT SMARTQURAN
+
+Anda adalah seorang Senior Software Architect, Senior Product Manager, Senior UX Designer, Senior Database Architect, dan Senior AI Engineer.
+
+Tugas Anda adalah membantu saya merancang aplikasi SmartQuran secara profesional, detail, dan siap dikembangkan.
+
+Aturan Utama
+
+JANGAN LANGSUNG MEMBUAT KODE.
+
+Sebelum membuat desain, database, API, wireframe, arsitektur, atau source code:
+
+Analisa semua kebutuhan yang saya jelaskan.
+Cari area yang belum jelas.
+Ajukan pertanyaan lanjutan sebanyak yang diperlukan.
+Jangan membuat asumsi tanpa konfirmasi.
+Jika terdapat beberapa pilihan desain, tampilkan alternatif beserta kelebihan dan kekurangannya.
+Setelah seluruh kebutuhan jelas, buat dokumen spesifikasi lengkap.
+TUJUAN APLIKASI
+
+Membuat aplikasi Quran modern bernama:
+
+SmartQuran
+
+yang dapat berjalan:
+
+Deployment
+Shared Hosting CPanel
+Tanpa NodeJS
+Tanpa Docker
+SQLite Database
+Offline di Windows IIS
+Offline portable dalam satu folder
+Bisa dijalankan tanpa koneksi internet
+Arsitektur yang Diinginkan
+
+Tolong tanyakan dan rekomendasikan mana yang terbaik:
+
+Alternatif:
+
+PHP + SQLite
+ASP.NET MVC + SQLite
+ASP.NET Core + SQLite
+Python Flask + SQLite
+Python Django + SQLite
+
+Prioritas:
+
+mudah deploy di cPanel
+cepat
+ringan
+SEO friendly
+modern UI
+mudah maintenance
+mudah update database Quran
+
+Tanyakan rekomendasi terbaik.
+
+FITUR UTAMA
+1. Download Knowledge Base Quran
+
+Aplikasi harus mampu:
+
+Download Quran Database
+Download Translation Database
+Download Topic Database
+Download Root Word Database
+Download Tafsir Database (opsional)
+Download Metadata
+
+Agent harus bertanya:
+
+Sumber data Quran?
+API atau file?
+Update manual atau otomatis?
+Versi database?
+2. Multi Language
+
+MVP:
+
+Bahasa
+Arab
+Inggris
+Indonesia
+Sunda
+Jawa
+
+Agent harus bertanya:
+
+Apakah UI juga multilingual?
+Atau hanya konten Quran?
+Apakah pengguna dapat menambah bahasa sendiri?
+3. Modern Professional Layout
+
+Layout modern seperti aplikasi enterprise.
+
+Header
+
+Berisi:
+
+Logo
+Nama aplikasi
+Search box global
+Language selector
+Theme selector
+User menu
+Sidebar
+
+Collapsible.
+
+Main Content
+
+Responsive.
+
+Right Panel
+
+Opsional.
+
+Agent harus menanyakan:
+
+Bootstrap?
+AdminLTE?
+Tabler?
+Tailwind tanpa Node?
+Tema terang dan gelap?
+4. Browse Quran
+
+Sidebar menu:
+
+Browse By
+Juz
+Surat
+Ayat
+
+Panel tengah:
+
+Menampilkan:
+
+Teks Arab
+Translation aktif
+
+Opsional:
+
+Tajwid warna
+Audio
+Tafsir
+Bookmark
+
+Tolong gali kebutuhan lebih detail.
+
+5. Topic Navigator
+
+Pengguna dapat mencari topik.
+
+Contoh:
+
+Pembukaan
+Muttaqin
+Kafirin
+Munafikin
+
+dan seterusnya.
+
+Contoh hasil:
+
+Pembukaan
+
+Al Fatihah 1-7
+
+Muttaqin
+
+Al Baqarah 1-5
+
+Kafirin
+
+Al Baqarah 6-7
+
+Munafikin
+
+Al Baqarah 8-20
+
+Agent harus bertanya:
+
+Sumber Topik
+
+Apakah:
+
+dibuat manual?
+menggunakan dataset Depag?
+menggunakan AI tagging?
+kombinasi?
+6. Smart Search
+
+Pengguna dapat mencari:
+
+Bahasa Arab
+kata
+akar kata (root)
+Bahasa Indonesia
+kata
+frasa
+Bahasa Inggris
+kata
+frasa
+
+Contoh:
+
+takdir
+
+atau
+
+taqdir
+
+atau root arab:
+
+ق د ر
+
+Maka sistem menampilkan:
+
+Ayat relevan
+Kelompok topik
+Keterkaitan topik
+FITUR SEMANTIC TOPIC DISCOVERY
+
+Ini fitur paling penting.
+
+Agent harus membantu merancang.
+
+Contoh:
+
+User mencari:
+
+takdir
+
+Muncul struktur topik:
+
+Takdir
+ ├─ Nikmat
+ │   ├─ Syukur
+ │   ├─ Dusta
+ │   └─ Kematian
+ │
+ ├─ Kematian
+ │   ├─ Malaikat
+ │   ├─ Kubur
+ │   └─ Hari Akhir
+ │
+ └─ Kehidupan
+     ├─ Ujian
+     ├─ Rezeki
+     └─ Amal
+
+
+Tujuannya:
+
+Pengguna memahami:
+
+hubungan antar konsep Quran
+asosiasi topik
+pola pembahasan Quran
+
+Agent harus bertanya:
+
+Graph Knowledge
+
+Apakah ingin:
+
+Topic Graph
+Knowledge Graph
+Semantic Network
+Ontology Quran
+Relasi
+
+Apakah mendukung:
+
+sinonim
+antonim
+sebab akibat
+bagian dari
+terkait dengan
+lawan konsep
+7. DRILL DOWN TOPIC
+
+Ketika klik:
+
+Takdir
+ -> Kematian
+ -> Malaikat
+
+
+Maka tampil:
+
+Semua ayat terkait.
+
+Kemudian klik ayat.
+
+Maka muncul:
+
+Arab
+Terjemahan
+Tafsir
+Relasi topik
+Root kata
+
+Agent perlu menggali kebutuhan detail fitur ini.
+
+DATABASE DESIGN
+
+Tolong usulkan design SQLite lengkap.
+
+Minimal tabel:
+
+quran_surah
+quran_ayah
+translation
+language
+topic
+topic_ayah
+root_word
+ayah_root_word
+synonym
+antonym
+relation
+tafsir
+bookmark
+settings
+
+Berikan alternatif schema yang lebih baik jika diperlukan.
+
+SEARCH ENGINE
+
+Tolong evaluasi:
+
+Opsi 1
+
+SQLite FTS5
+
+Opsi 2
+
+Whoosh
+
+Opsi 3
+
+Lucene
+
+Opsi 4
+
+Elasticsearch
+
+Karena harus offline dan cPanel friendly.
+
+Rekomendasikan terbaik.
+
+AI FITUR MASA DEPAN
+
+Belum perlu dibuat sekarang.
+
+Namun desain harus mendukung:
+
+AI Chat Quran
+RAG Quran
+Local LLM
+Ollama
+Semantic Search
+Embedding Database
+
+Tolong desain agar mudah ditambahkan nanti.
+
+OUTPUT YANG WAJIB DIBUAT
+
+Setelah semua pertanyaan terjawab:
+Langsung implement code!
+
+
+Mulailah dengan melakukan GAP Analysis dan mengajukan seluruh pertanyaan yang masih belum jelas. Jangan menulis kode sebelum seluruh kebutuhan terkonfirmasi.
