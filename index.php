@@ -21,10 +21,14 @@ if ($page !== 'install') {
     }
 }
 
-// Auth page bypasses header/footer (API-like handler)
-// — explicit ?page=auth
-// — OR implicit Google OAuth callback (?code=... & ?state=...)
-if ($page === 'auth' || (!empty($_GET['code']) && !empty($_GET['state']))) {
+// Auth API actions bypass header/footer (API-like handler: JSON or
+// redirect responses) — explicit ?page=auth&action=..., or the implicit
+// Google OAuth callback (?code=...&state=..., no page param at all,
+// since that's what's registered as the redirect_uri). Bare ?page=auth
+// with no action falls through to the normal page router below, so
+// pages/auth.php (the login form UI) actually renders.
+$isImplicitOAuthCallback = !empty($_GET['code']) && !empty($_GET['state']);
+if ($isImplicitOAuthCallback || ($page === 'auth' && !empty($_GET['action']))) {
     require_once __DIR__ . '/api/auth.php';
     exit;
 }

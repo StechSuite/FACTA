@@ -131,8 +131,18 @@ document.addEventListener('DOMContentLoaded', function(){
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
         </a>
       </div>
+    <?php elseif (is_admin()): ?>
+      <div class="auth-profile">
+        <a href="index.php?page=kurator" title="Kurator" style="display:flex;align-items:center;gap:4px;color:inherit;text-decoration:none">
+          <span class="name">admin</span>
+        </a>
+        <span class="badge-role" title="Admin">admin</span>
+        <a href="index.php?page=auth&action=logout" class="logout" title="Logout">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+        </a>
+      </div>
     <?php else: ?>
-      <a href="api/auth.php?action=login" class="login-chip" title="Login dengan Google">
+      <a href="index.php?page=auth" class="login-chip" title="Login">
         🔑 Login
       </a>
     <?php endif; ?>

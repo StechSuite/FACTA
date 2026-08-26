@@ -16,6 +16,29 @@ function get_app_version(): string {
     return APP_VERSION;
 }
 
+// Admin login credentials — config.admin.json overrides these if present
+// (see config.admin.json.example); otherwise this hardcoded default is
+// used, so the app has a working admin login with zero setup. This
+// default is PUBLIC (it's in the public repo) — api/admin_login.php
+// warns on every login while it's still active, and README.md says to
+// change it before deploying anywhere reachable by the public.
+function admin_login_credentials(): array {
+    $default = ['username' => 'admin', 'password' => 'bismillah'];
+    $file = __DIR__ . '/../config.admin.json';
+    if (is_readable($file)) {
+        $decoded = json_decode(file_get_contents($file) ?: '', true);
+        if (is_array($decoded) && isset($decoded['username'], $decoded['password'])) {
+            return ['username' => $decoded['username'], 'password' => $decoded['password']];
+        }
+    }
+    return $default;
+}
+
+function admin_using_default_credentials(): bool {
+    $creds = admin_login_credentials();
+    return $creds['username'] === 'admin' && $creds['password'] === 'bismillah';
+}
+
 // Safe JSON response
 // Simple admin gate (used for local Kurator tools)
 function is_admin(): bool {

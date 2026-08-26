@@ -51,6 +51,16 @@ php -S localhost:8885
 
 Then obtain/build the seed data per [`data/README.md`](data/README.md), and visit `http://localhost:8885/install.php` to build `data/smartquran.db`. Once that's done, `index.php` is the app.
 
+## Admin login
+
+Google OAuth (used by the live demo) needs credentials tied to a specific deployment, so it isn't shipped here — it's disabled until you set `GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET` yourself (see `includes/config.php`). Instead, this repo ships a simple username/password admin login (for the Kurator tool etc.) that works out of the box:
+
+- **Default:** `admin` / `bismillah`
+- **Change it:** `cp config.admin.json.example config.admin.json` and edit the password. That file is gitignored.
+- Log in from the 🔑 button in the header, or `index.php?page=auth`.
+
+⚠️ **The default password is public** (it's in this README). Change it before deploying anywhere reachable by the public — the login page shows a warning banner for as long as it's still the default.
+
 ## Project structure
 
 ```

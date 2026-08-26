@@ -1,0 +1,5 @@
+{
+    "description": "FACTA admin login (used when Google OAuth isn't configured — see README.md). Copy this file to config.admin.json to override the default; that file is gitignored. CHANGE THE PASSWORD before deploying this anywhere reachable by the public.",
+    "username": "admin",
+    "password": "bismillah"
+}

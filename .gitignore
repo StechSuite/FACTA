@@ -1,6 +1,7 @@
 # Secrets — never commit these
 deploy.secrets.json
 config.keys.json
+config.admin.json
 
 # Generated seed data & database — see data/README.md. Intentionally
 # untracked: part of the source pipeline is GPLv3-derived (see the data
